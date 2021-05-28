@@ -1,0 +1,102 @@
+:root {
+  /* color */
+  --background-color: #200f0f;
+  --main--color: #fefaee;
+
+  /* size */
+  --size-width: 30rem;
+  --size-height: 20.313rem;
+  --size-font: 3.125rem;
+
+  /* border */
+  --border-radius: 0.313rem;
+
+  /* margin */
+  --margin-top: 12.5rem;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+  font-family: serif;
+}
+
+/* main */
+.main {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.main-content {
+  margin-top: var(--margin-top);
+  position: relative;
+  width: var(--size-width);
+  height: var(--size-height);
+  background-color: var(--main--color);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 0.188rem 0.313rem 0.5rem #fffaea;
+  text-align: center;
+}
+.main-content h3 {
+  padding: 1rem;
+}
+.main-time {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  font-size: var(--size-font);
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    align-items: center;
+    flex-direction: column;
+  }
+  .main-content {
+    width: calc(var(--size-width) / 1.5);
+    height: calc(var(--size-height) / 1.5);
+    margin-top: calc(var(--margin-top) / 3);
+  }
+  .main-time {
+    transform: translate(-50%, 50%);
+    font-size: calc(var(--size-font) / 2.5);
+  }
+}
+
+/* btns */
+.btns {
+  margin-top: calc(var(--margin-top) / 2);
+  text-align: center;
+}
+.btn-start {
+  width: calc(var(--size-width) / 5);
+  height: calc(var(--size-height) / 9);
+  outline: none;
+  cursor: pointer;
+  border: none;
+  border-radius: calc(var(--border-radius) * 1.5);
+  font-size: 1rem;
+}
+.btn-start:active {
+  transform: translateY(2px) scale(0.99);
+}
+
+/* input */
+.input-container {
+  margin-top: calc(var(--margin-top) / 3);
+  text-align: center;
+}
+.input {
+  text-align: center;
+  background-color: var(--background-color);
+  outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: calc(var(--size-font) / 3.5);
+}
