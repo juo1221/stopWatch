@@ -76,7 +76,7 @@ body {
   margin-top: calc(var(--margin-top) / 3);
   text-align: center;
 }
-.input {
+#input {
   text-align: center;
   background-color: var(--background-color);
   outline: none;
