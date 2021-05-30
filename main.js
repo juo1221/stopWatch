@@ -3,6 +3,8 @@
 const button = document.querySelector(".btn-start");
 const studyTime = document.querySelector(".main-time--time-study");
 const playTime = document.querySelector(".main-time--time-play");
+const input = document.querySelector("#input");
+const form = document.querySelector("#form");
 let studyInterval;
 let playInterval;
 let studyCount = 0;
@@ -52,6 +54,27 @@ function createTime(time, count) {
   time.innerHTML = `${SH2}${SH1} : ${SM2}${SM1} : ${SS2}${SS1}`;
 }
 
+function onSubmit(e, text) {
+  e.preventDefault();
+  if (text === "" || text !== "finish") {
+    initiateInput();
+    return;
+  }
+  initiateInput();
+  studyCount = playCount = 0;
+  clearInterval(studyInterval);
+  clearInterval(playInterval);
+  studyTime.innerHTML = `00 : 00 : 00`;
+  playTime.innerHTML = `00 : 00 : 00`;
+}
+
+function initiateInput() {
+  input.value = "";
+  input.focus();
+}
+
 button.addEventListener("click", () => {
   init();
 });
+
+form.addEventListener("submit", (e) => onSubmit(e, input.value));
