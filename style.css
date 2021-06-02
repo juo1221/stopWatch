@@ -86,6 +86,27 @@ body {
   font-size: calc(var(--size-font) / 3.5);
 }
 
+/* face detect */
+#video-wrapper {
+  position: relative;
+  width: 0;
+  height: auto;
+  background-color: transparent;
+  margin: auto;
+  transform: translateY(-200px);
+}
+
+video,
+canvas {
+  transform: rotateY(180deg);
+  max-width: 100%;
+}
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 @media screen and (max-width: 768px) {
   .main {
     align-items: center;
