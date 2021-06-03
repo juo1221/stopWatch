@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>시간관리하자</title>
-    <script src="js/main.js" defer></script>
     <script src="js/face-api.min.js" defer></script>
-    <script src="js/expressions.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
+    <script type="module" src="js/expressions.js" defer></script>
   </head>
   <body>
     <main class="main">
@@ -23,9 +23,11 @@
         <span class="main-time main-time--time-play">00 : 00 : 00</span>
       </div>
     </main>
+
     <section class="btns">
       <button class="btn-start">start</button>
     </section>
+
     <section class="input-container">
       <form id="form">
         <input
