@@ -73,8 +73,12 @@ function initiateInput() {
   input.focus();
 }
 
+
+
 button.addEventListener("click", () => {
   init();
 });
 
 form.addEventListener("submit", (e) => onSubmit(e, input.value));
+
+export { studyCount, playCount, studyTime, playTime, createTime };
