@@ -1,6 +1,6 @@
 "use strict";
-import { createTime, playTime, studyTime } from "./main.js";
-const playbtn = document.querySelector(".btns-auto");
+import { createTime, playTime, studyTime, autoBtn } from "./main.js";
+const button = document.querySelector(".btn-start");
 const video = document.querySelector("#video");
 const overay = document.querySelector("#overay");
 const faceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
@@ -13,6 +13,7 @@ let playCount2 = 0;
 const withFaceLandmarksTinyModel = true;
 
 async function run() {
+  removeBtn();
   await Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri("/weights"),
     faceapi.nets.faceExpressionNet.loadFromUri("/weights"),
@@ -23,6 +24,11 @@ async function run() {
   video.srcObject = stream;
 
   video.addEventListener("play", detect);
+}
+
+function removeBtn() {
+  button.style.display = "none";
+  autoBtn.style.visibility = "hidden";
 }
 
 function detect() {
@@ -48,4 +54,4 @@ function detect() {
   }, 1000);
 }
 
-playbtn.addEventListener("click", run);
+autoBtn.addEventListener("click", run);

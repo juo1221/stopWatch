@@ -58,7 +58,8 @@ body {
   margin-top: calc(var(--margin-top) / 2);
   text-align: center;
 }
-.btn-start {
+.btn-start,
+.btns-auto {
   width: calc(var(--size-width) / 5);
   height: calc(var(--size-height) / 9);
   outline: none;
@@ -89,7 +90,7 @@ body {
 /* face detect */
 #video-wrapper {
   position: relative;
-  width: 0;
+  width: 100px;
   height: auto;
   background-color: transparent;
   margin: auto;

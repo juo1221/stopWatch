@@ -1,6 +1,8 @@
 "use strict";
 
 const button = document.querySelector(".btn-start");
+const autoBtn = document.querySelector(".btns-auto");
+
 const studyTime = document.querySelector(".main-time--time-study");
 const playTime = document.querySelector(".main-time--time-play");
 const input = document.querySelector("#input");
@@ -19,6 +21,7 @@ function playSound() {
 }
 function onClick() {
   button.classList.toggle("focused");
+  autoBtn.style.display = "none";
 
   if (button.matches(".focused")) {
     clearInterval(playInterval);
@@ -38,18 +41,18 @@ function onClick() {
 }
 
 function createTime(time, count) {
-  let hour = parseInt(count / 3600);
-  let min = parseInt(count / 60);
-  let sec = count;
+  const hour = parseInt(count / 3600);
+  const min = parseInt(count / 60);
+  const sec = count;
 
-  let SH2 = parseInt(hour / 10) % 2;
-  let SH1 = hour % 10;
+  const SH2 = parseInt(hour / 10) % 2;
+  const SH1 = hour % 10;
 
-  let SM2 = parseInt(min / 10) % 6;
-  let SM1 = min % 10;
+  const SM2 = parseInt(min / 10) % 6;
+  const SM1 = min % 10;
 
-  let SS2 = parseInt(sec / 10) % 6;
-  let SS1 = sec % 10;
+  const SS2 = parseInt(sec / 10) % 6;
+  const SS1 = sec % 10;
 
   time.innerHTML = `${SH2}${SH1} : ${SM2}${SM1} : ${SS2}${SS1}`;
 }
@@ -73,12 +76,10 @@ function initiateInput() {
   input.focus();
 }
 
-
-
 button.addEventListener("click", () => {
   init();
 });
 
 form.addEventListener("submit", (e) => onSubmit(e, input.value));
 
-export { studyCount, playCount, studyTime, playTime, createTime };
+export { studyCount, playCount, studyTime, playTime, autoBtn, createTime };
