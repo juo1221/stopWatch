@@ -1,12 +1,15 @@
 "use strict";
 
+import { stopAutoTime } from "./expressions.js";
+
 const button = document.querySelector(".btn-start");
 const autoBtn = document.querySelector(".btns-auto");
-
 const studyTime = document.querySelector(".main-time--time-study");
 const playTime = document.querySelector(".main-time--time-play");
 const input = document.querySelector("#input");
 const form = document.querySelector("#form");
+const video = document.querySelector("#video");
+const videoWrapper = document.querySelector("#video-wrapper");
 let studyInterval;
 let playInterval;
 let studyCount = 0;
@@ -57,18 +60,30 @@ function createTime(time, count) {
   time.innerHTML = `${SH2}${SH1} : ${SM2}${SM1} : ${SS2}${SS1}`;
 }
 
-function onSubmit(e, text) {
+function onSubmit(e) {
   e.preventDefault();
+  const text = input.value;
   if (text === "" || text !== "finish") {
     initiateInput();
     return;
   }
   initiateInput();
+  stopAutoTime && stopAutoCam();
+  initiateTime();
+  studyTime.innerHTML = `00 : 00 : 00`;
+  playTime.innerHTML = `00 : 00 : 00`;
+}
+
+function stopAutoCam() {
+  clearInterval(stopAutoTime);
+  videoWrapper.style.display = "none";
+  video.srcObject.getTracks().forEach((track) => track.stop());
+}
+
+function initiateTime() {
   studyCount = playCount = 0;
   clearInterval(studyInterval);
   clearInterval(playInterval);
-  studyTime.innerHTML = `00 : 00 : 00`;
-  playTime.innerHTML = `00 : 00 : 00`;
 }
 
 function initiateInput() {
@@ -80,6 +95,6 @@ button.addEventListener("click", () => {
   init();
 });
 
-form.addEventListener("submit", (e) => onSubmit(e, input.value));
+form.addEventListener("submit", onSubmit);
 
-export { studyCount, playCount, studyTime, playTime, autoBtn, createTime };
+export { studyCount, playCount, studyTime, playTime, createTime };

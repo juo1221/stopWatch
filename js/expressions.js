@@ -1,5 +1,6 @@
 "use strict";
-import { createTime, playTime, studyTime, autoBtn } from "./main.js";
+import { createTime, playTime, studyTime } from "./main.js";
+const autoBtn = document.querySelector(".btns-auto");
 const button = document.querySelector(".btn-start");
 const video = document.querySelector("#video");
 const overay = document.querySelector("#overay");
@@ -9,6 +10,7 @@ const faceDetectorOptions = new faceapi.TinyFaceDetectorOptions({
 
 let studyCount2 = 0;
 let playCount2 = 0;
+let stopAutoTime;
 
 const withFaceLandmarksTinyModel = true;
 
@@ -32,7 +34,7 @@ function removeBtn() {
 }
 
 function detect() {
-  setTimeout(async () => {
+  stopAutoTime = setTimeout(async () => {
     const results = await faceapi
       .detectSingleFace(video, faceDetectorOptions)
       .withFaceLandmarks(withFaceLandmarksTinyModel)
@@ -55,3 +57,5 @@ function detect() {
 }
 
 autoBtn.addEventListener("click", run);
+
+export { stopAutoTime };
