@@ -16,6 +16,7 @@ let studyCount = 0;
 let playCount = 0;
 
 function init() {
+  removeBtn();
   playSound();
   onClick();
 }
@@ -24,7 +25,6 @@ function playSound() {
 }
 function onClick() {
   button.classList.toggle("focused");
-  autoBtn.style.display = "none";
 
   if (button.matches(".focused")) {
     clearInterval(playInterval);
@@ -67,6 +67,8 @@ function onSubmit(e) {
     initiateInput();
     return;
   }
+  button.innerHTML = "일반버튼";
+  addBtn();
   initiateInput();
   stopAutoTime && stopAutoCam();
   initiateTime();
@@ -74,9 +76,20 @@ function onSubmit(e) {
   playTime.innerHTML = `00 : 00 : 00`;
 }
 
+function removeBtn() {
+  autoBtn.classList.add("remove");
+}
+
+function addBtn() {
+  button.classList.remove("focused");
+  button.classList.remove("remove");
+  autoBtn.classList.remove("invisible");
+  autoBtn.classList.remove("remove");
+}
+
 function stopAutoCam() {
   clearInterval(stopAutoTime);
-  videoWrapper.style.display = "none";
+  videoWrapper.classList.add("remove");
   video.srcObject.getTracks().forEach((track) => track.stop());
 }
 
