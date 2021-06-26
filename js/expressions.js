@@ -19,6 +19,7 @@ function init() {
   videoWrapper.classList.remove("remove");
   removeBtn();
   run();
+  playCount2 = studyCount2 = 0;
 }
 
 async function run() {
@@ -31,7 +32,7 @@ async function run() {
   const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
   video.srcObject = stream;
 
-  video.addEventListener("play", detect);
+  detect();
 }
 
 function removeBtn() {
@@ -40,16 +41,12 @@ function removeBtn() {
 }
 
 function detect() {
-  stopAutoTime = setTimeout(async () => {
-    const results = await faceapi
-      .detectSingleFace(video, faceDetectorOptions)
-      .withFaceLandmarks(withFaceLandmarksTinyModel)
-      .withFaceExpressions();
+  stopAutoTime = setInterval(async () => {
+    const results = await faceapi.detectSingleFace(video, faceDetectorOptions);
 
     if (results === undefined) {
       playCount2++;
       createTime(playTime, playCount2);
-      requestAnimationFrame(detect);
     } else {
       const dims = faceapi.matchDimensions(overlay, video, true);
       const resizedResults = faceapi.resizeResults(results, dims);
@@ -57,7 +54,6 @@ function detect() {
 
       studyCount2++;
       createTime(studyTime, studyCount2);
-      requestAnimationFrame(detect);
     }
   }, 1000);
 }
