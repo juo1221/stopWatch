@@ -23,11 +23,7 @@ function init() {
 }
 
 async function run() {
-  await Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri("/weights"),
-    faceapi.nets.faceExpressionNet.loadFromUri("/weights"),
-    faceapi.nets.faceLandmark68TinyNet.loadFromUri("/weights"),
-  ]);
+  await Promise.all([faceapi.nets.tinyFaceDetector.loadFromUri("/weights")]);
 
   const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
   video.srcObject = stream;
