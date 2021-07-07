@@ -71,6 +71,12 @@ body {
 .btn-start:active {
   transform: translateY(2px) scale(0.99);
 }
+.remove {
+  display: none;
+}
+.invisible {
+  visibility: hidden;
+}
 
 /* input */
 .input-container {
