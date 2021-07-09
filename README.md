@@ -1,6 +1,7 @@
 # timeSwitch
 시간관리앱입니다.
 
+clone 후 live server에서 사용가능합니다. 
 
 # 간단한 사용방법
 
